@@ -72,7 +72,7 @@ class _PayBillState extends State<PayBill> {
     if (formKey.currentState!.validate()) {
       final amount = amountCtr.text.trim();
       final phoneNumber = phoneCtr.text.trim();
-      final network = networkCtr.text.trim();
+      // final network = networkCtr.text.trim();
 
       showDialog(
           context: context,

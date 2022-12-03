@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:water_billing/app_layout.dart';
-import 'package:water_billing/home.dart';
-import 'package:water_billing/main.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
