@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:water_billing/enquery.dart';
+import 'package:water_billing/helpers.dart';
 import 'package:water_billing/home.dart';
+import 'package:water_billing/pay_bill.dart';
 
 class AppLayout extends StatefulWidget {
   const AppLayout({super.key});
@@ -68,20 +70,51 @@ class _AppLayoutState extends State<AppLayout> {
                 Navigator.pop(context);
               },
             ),
-            SizedBox(height: 20),
-            MenuItem(icon: Icons.message_outlined, title: 'Enquiries'),
-            SizedBox(height: 20),
-            MenuItem(icon: Icons.settings, title: 'Settings'),
-            SizedBox(height: 20),
-            Divider(color: Colors.white),
-            SizedBox(height: 20),
-            MenuItem(icon: Icons.credit_card, title: 'Pay Bill'),
-            SizedBox(height: 20),
-            MenuItem(icon: Icons.schedule, title: 'Transactions'),
-            SizedBox(height: 20),
-            MenuItem(icon: Icons.person, title: 'Account Info'),
-            SizedBox(height: 20),
-            Divider(color: Colors.white),
+            const SizedBox(height: 20),
+            MenuItem(
+              icon: Icons.message_outlined,
+              title: 'Enquiries',
+              onTap: () {
+                setState(() {
+                  _currentPage = 1;
+                });
+                Navigator.pop(context);
+              },
+            ),
+            const SizedBox(height: 20),
+            MenuItem(
+              icon: Icons.settings,
+              title: 'Settings',
+              onTap: () {
+                setState(() {
+                  _currentPage = 2;
+                });
+                Navigator.pop(context);
+              },
+            ),
+            const SizedBox(height: 20),
+            const Divider(color: Colors.white),
+            const SizedBox(height: 20),
+            MenuItem(
+              icon: Icons.credit_card,
+              title: 'Pay Bill',
+              onTap: () {
+                setState(() {
+                  _currentPage = 1;
+                });
+                Navigator.pop(context);
+                navigateTo(
+                  context,
+                  to: const PayBill(),
+                );
+              },
+            ),
+            const SizedBox(height: 20),
+            const MenuItem(icon: Icons.schedule, title: 'Transactions'),
+            const SizedBox(height: 20),
+            const MenuItem(icon: Icons.person, title: 'Account Info'),
+            const SizedBox(height: 20),
+            const Divider(color: Colors.white),
           ]),
         ),
       ),
