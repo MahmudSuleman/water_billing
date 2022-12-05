@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:water_billing/meter_card.dart';
 import 'package:water_billing/models/menu_item.dart';
 
 class PayBill extends StatefulWidget {
@@ -19,6 +20,7 @@ class _PayBillState extends State<PayBill> {
     NetworkMenuItem(imageUrl: 'assets/mtn.jpeg', name: 'MTN'),
     NetworkMenuItem(imageUrl: 'assets/vodafone.png', name: 'Vodafone'),
     NetworkMenuItem(imageUrl: 'assets/airteltigo.jpeg', name: 'Airtel Tigo'),
+    NetworkMenuItem(imageUrl: 'assets/debit.png', name: 'Debit Card'),
   ];
 
   @override
@@ -40,26 +42,30 @@ class _PayBillState extends State<PayBill> {
           title: const Text('Pay Bill'),
           centerTitle: true,
         ),
-        body: Center(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Form(
-                key: formKey,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    _buildHeaderText(),
-                    const SizedBox(height: 10),
-                    _buildAmountInput(),
-                    const SizedBox(height: 20),
-                    _buildPhoneNumberInput(),
-                    const SizedBox(height: 20),
-                    _buildDropDown(),
-                    const SizedBox(height: 20),
-                    _buildSubmit(),
-                  ],
-                ),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Form(
+              key: formKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const SizedBox(height: 20),
+                  const SizedBox(
+                    width: double.infinity,
+                    child: MeterCard(),
+                  ),
+                  const SizedBox(height: 20),
+                  _buildHeaderText(),
+                  const SizedBox(height: 10),
+                  _buildAmountInput(),
+                  const SizedBox(height: 20),
+                  _buildPhoneNumberInput(),
+                  const SizedBox(height: 20),
+                  _buildDropDown(),
+                  const SizedBox(height: 20),
+                  _buildSubmit(),
+                ],
               ),
             ),
           ),
@@ -185,7 +191,7 @@ class _PayBillState extends State<PayBill> {
       'Make Payment',
       style: TextStyle(
         fontWeight: FontWeight.bold,
-        fontSize: 30,
+        fontSize: 20,
       ),
     );
   }

@@ -14,8 +14,16 @@ class AllTransactions extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: isEmpty
             ? Center(
-                child:
-                    Column(children: [Image.asset('assests/image/note.svg')]),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Icon(
+                      Icons.list,
+                      size: 50,
+                    ),
+                    Text('No data')
+                  ],
+                ),
               )
             : ListView(
                 children: const [

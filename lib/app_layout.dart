@@ -1,8 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:water_billing/enquery.dart';
 import 'package:water_billing/helpers.dart';
 import 'package:water_billing/home.dart';
 import 'package:water_billing/pay_bill.dart';
+import 'package:water_billing/settings.dart';
+import 'package:water_billing/transactions.dart';
 
 class AppLayout extends StatefulWidget {
   const AppLayout({super.key});
@@ -12,11 +16,7 @@ class AppLayout extends StatefulWidget {
 }
 
 class _AppLayoutState extends State<AppLayout> {
-  final _pages = [
-    const Home(),
-    const Enquery(),
-    const Text('settings'),
-  ];
+  final _pages = [const Home(), const Enquery(), const Settings()];
 
   int _currentPage = 0;
 
@@ -59,63 +59,115 @@ class _AppLayoutState extends State<AppLayout> {
         backgroundColor: Colors.green,
         child: Padding(
           padding: const EdgeInsets.only(top: 50, left: 20),
-          child: ListView(children: [
-            MenuItem(
-              icon: Icons.home,
-              title: 'Home',
-              onTap: () {
-                setState(() {
-                  _currentPage = 0;
-                });
-                Navigator.pop(context);
-              },
-            ),
-            const SizedBox(height: 20),
-            MenuItem(
-              icon: Icons.message_outlined,
-              title: 'Enquiries',
-              onTap: () {
-                setState(() {
-                  _currentPage = 1;
-                });
-                Navigator.pop(context);
-              },
-            ),
-            const SizedBox(height: 20),
-            MenuItem(
-              icon: Icons.settings,
-              title: 'Settings',
-              onTap: () {
-                setState(() {
-                  _currentPage = 2;
-                });
-                Navigator.pop(context);
-              },
-            ),
-            const SizedBox(height: 20),
-            const Divider(color: Colors.white),
-            const SizedBox(height: 20),
-            MenuItem(
-              icon: Icons.credit_card,
-              title: 'Pay Bill',
-              onTap: () {
-                setState(() {
-                  _currentPage = 1;
-                });
-                Navigator.pop(context);
-                navigateTo(
-                  context,
-                  to: const PayBill(),
-                );
-              },
-            ),
-            const SizedBox(height: 20),
-            const MenuItem(icon: Icons.schedule, title: 'Transactions'),
-            const SizedBox(height: 20),
-            const MenuItem(icon: Icons.person, title: 'Account Info'),
-            const SizedBox(height: 20),
-            const Divider(color: Colors.white),
-          ]),
+          child: ListView(
+            children: [
+              MenuItem(
+                icon: Icons.home,
+                title: 'Home',
+                onTap: () {
+                  setState(() {
+                    _currentPage = 0;
+                  });
+                  Navigator.pop(context);
+                },
+              ),
+              const SizedBox(height: 20),
+              MenuItem(
+                icon: Icons.message_outlined,
+                title: 'Enquiries',
+                onTap: () {
+                  setState(() {
+                    _currentPage = 1;
+                  });
+                  Navigator.pop(context);
+                },
+              ),
+              const SizedBox(height: 20),
+              MenuItem(
+                icon: Icons.settings,
+                title: 'Settings',
+                onTap: () {
+                  setState(() {
+                    _currentPage = 2;
+                  });
+                  Navigator.pop(context);
+                },
+              ),
+              const SizedBox(height: 20),
+              const Divider(color: Colors.white),
+              const SizedBox(height: 20),
+              MenuItem(
+                icon: Icons.credit_card,
+                title: 'Pay Bill',
+                onTap: () {
+                  Navigator.pop(context);
+                  navigateTo(
+                    context,
+                    to: const PayBill(),
+                  );
+                },
+              ),
+              const SizedBox(height: 20),
+              MenuItem(
+                icon: Icons.schedule,
+                title: 'Transactions',
+                onTap: () {
+                  Navigator.pop(context);
+                  navigateTo(
+                    context,
+                    to: const AllTransactions(),
+                  );
+                },
+              ),
+              const SizedBox(height: 20),
+              const Divider(color: Colors.white),
+              const SizedBox(height: 20),
+              MenuItem(
+                icon: Icons.logout,
+                title: 'Logout',
+                onTap: () {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: const Text('Logout'),
+                          content: const Text(
+                            'Are you sure you want to logout?',
+                          ),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                exit(1);
+                              },
+                              child: const Text(
+                                'Yes',
+                                style: TextStyle(
+                                  color: Colors.red,
+                                ),
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context)
+                                  ..pop()
+                                  ..pop();
+                              },
+                              child: const Text(
+                                'No',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            )
+                          ],
+                        );
+                      });
+                },
+              ),
+              const SizedBox(height: 20),
+              const Divider(color: Colors.white),
+            ],
+          ),
         ),
       ),
     );
@@ -149,7 +201,10 @@ class MenuItem extends StatelessWidget {
           Text(
             title,
             style: const TextStyle(
-                fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white),
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+              color: Colors.white,
+            ),
           ),
         ],
       ),
