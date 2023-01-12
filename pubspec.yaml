@@ -40,6 +40,7 @@ dependencies:
   url_launcher: ^6.1.7
   font_awesome: ^5.10.1
   bottom_sheet: ^3.1.2
+  image_picker: ^0.8.6
 
 dev_dependencies:
   flutter_test:

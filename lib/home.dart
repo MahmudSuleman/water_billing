@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:water_billing/complaints.dart';
 import 'package:water_billing/helpers.dart';
 import 'package:water_billing/meter_card.dart';
 import 'package:water_billing/pay_bill.dart';
@@ -63,9 +64,12 @@ class Home extends StatelessWidget {
                   _buildCurrentBillInfo(context);
                 },
               ),
-              const QuickAccessItem(
+              QuickAccessItem(
                 icon: Icons.headphones,
                 text: 'Complaints',
+                onTap: () {
+                  navigateTo(context, to: const Complaints());
+                },
               ),
             ],
           )
