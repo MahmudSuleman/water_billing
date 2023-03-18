@@ -29,7 +29,7 @@ class Complaints extends StatelessWidget {
               : const SizedBox()),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          navigateTo(context, to: ComplaintAdd());
+          navigateTo(context, to: const ComplaintAdd());
         },
         child: const Icon(Icons.add),
       ),
